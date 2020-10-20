@@ -7,12 +7,17 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { createStore, combineReducers, applyMiddleware } from 'redux'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
-import reducer from './store/reducer';
+import counterReducer from './store/reducers/counter';
+import resultReducer from './store/reducers/result';
 
 const middleware = [thunk]
 
+const rootReducers = combineReducers({
+    counterReducer: counterReducer,
+    resultReducer: resultReducer,
+});
 const store = createStore(
-    reducer,
+    rootReducers,
     composeWithDevTools(applyMiddleware(...middleware))
 );
 
